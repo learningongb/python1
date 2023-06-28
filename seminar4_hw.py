@@ -14,29 +14,32 @@
 # set1 = [2, 4, 6, 8, 10, 12, 10, 8, 6, 4, 2]
 # set2 = [3, 6, 9, 12, 15, 18]
 
-# from random import randint
+from random import randint
+from unittest import result
 
-# len1 = int(input("Размер первого набора "))
-# len2 = int(input("Размер второго набора "))
+len1 = int(input("Размер первого набора "))
+len2 = int(input("Размер второго набора "))
 
-# list1 = list()
-# for _ in range(len1):
-#     list1.append(randint(1, 10))
-# list2 = list()
-# for _ in range(len2):
-#     list2.append(randint(1, 10))
+list1 = list()
+for _ in range(len1):
+    list1.append(randint(1, 10))
+list2 = list()
+for _ in range(len2):
+    list2.append(randint(1, 10))
 
-# new_set1 = set(list1)
-# new_set2 = set(list2)
+new_set1 = set(list1)
+new_set2 = set(list2)
 
-# print("Первый набор = ", *new_set1)
-# print("Второй набор = ", *new_set2)
+print("Первый набор = ", *new_set1)
+print("Второй набор = ", *new_set2)
 
-# result = set()
-# for i in new_set1:
-#     if i in new_set2:
-#         result.add(i)
-# print(*result)
+result_set = set()
+for i in new_set1:
+    if i in new_set2:
+        result_set.add(i)
+result = list(result_set)
+result.sort()
+print(*result)
 
 """
 Задача 24: В фермерском хозяйстве в Карелии выращивают чернику. Она растет на
@@ -56,19 +59,19 @@
 4 -> 1 2 3 4
 9
 """
-from random import randint
+# from random import randint
 
-bush_count = 10
-bushs = []
-for _ in range(bush_count):
-    bushs.append(randint(0, 10))
-max_berrys = 0
-max_bush = 0
+# bush_count = 10
+# bushs = []
+# for _ in range(bush_count):
+#     bushs.append(randint(0, 10))
+# max_berrys = 0
+# max_bush = 0
 
-for i in range(len(bushs)):
-    sum = bushs[i - 2] + bushs[i - 1] + bushs[i]
-    if sum > max_berrys:
-        max_berrys = sum
-        max_bush = i
-print("Вот такая грядка", *bushs)    
-print(f"Можем собрать {max_berrys} находясь перед кустом {max_bush} (нумерация с 1)")
+# for i in range(len(bushs)):
+#     sum = bushs[i - 2] + bushs[i - 1] + bushs[i]
+#     if sum > max_berrys:
+#         max_berrys = sum
+#         max_bush = i
+# print("Вот такая грядка", *bushs)    
+# print(f"Можем собрать {max_berrys} находясь перед кустом {max_bush} (нумерация с 1)")

@@ -15,7 +15,6 @@
 # set2 = [3, 6, 9, 12, 15, 18]
 
 from random import randint
-from unittest import result
 
 len1 = int(input("Размер первого набора "))
 len2 = int(input("Размер второго набора "))

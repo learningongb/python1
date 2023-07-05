@@ -5,15 +5,15 @@
 Каждое число вводится с новой строки.
 """
 
-# first = int(input("Первый элемент прогрессии "))
-# difference = int(input("Разность "))
-# count = int(input("Количество элементов "))
+first = int(input("Первый элемент прогрессии "))
+difference = int(input("Разность "))
+count = int(input("Количество элементов "))
 
-# l = list()
-# for i in range(1, count + 1):
-#     l.append((first + (i-1)*difference))
+l = list()
+for i in range(1, count + 1):
+    l.append((first + (i-1)*difference))
 
-# print(l)
+print(l)
 
 """
 Задача 32: Определить индексы элементов массива (списка), 

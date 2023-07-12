@@ -1,13 +1,20 @@
 from tabulate import tabulate
 
+def bold_green(str):
+    return "\033[1m\033[92m" + str +"\033[0m"; 
+
+def header_color(str):
+    return "\033[95m" + str + "\033[0m"; 
+
 def show_menu():
-    print("\nВыберите необходимое действие:\n"
-          "1. Отобразить весь справочник\n"
-          "2. Найти абонента по фамилии\n"
-          "3. Найти абонента по номеру телефона\n"
-          "4. Добавить абонента в справочник\n"
-          "5. Сохранить справочник в текстовом формате\n"
-          "6. Закончить работу")
+    print("\nВыберите необходимое действие:",
+          bold_green("1") + ". Отобразить весь справочник",
+          bold_green("2") + ". Найти абонента по фамилии",
+          bold_green("3") + ". Найти абонента по номеру телефона",
+          bold_green("4") + ". Добавить абонента в справочник",
+          bold_green("5") + ". Сохранить справочник в текстовом формате",
+          bold_green("6") + ". Закончить работу",
+          sep="\n")
     choice = int(input())
     return choice
 
@@ -21,12 +28,14 @@ def write_csv(filename: str, data: list):
 
 def read_csv(filename: str) -> list:
     data = []
-    fields = ["Фамилия", "Имя", "Телефон", "Описание"]
     with open(filename, 'r', encoding='utf-8') as fin:
         for line in fin:
-            record = dict(zip(fields, line.strip().split(',')))
+            record = dict(zip(fields(), line.strip().split(',')))
             data.append(record)
     return data
+
+def fields():
+    return ["Фамилия", "Имя", "Телефон", "Описание"]    
 
 def get_file_name():
     return "phon.txt"
@@ -34,13 +43,16 @@ def get_file_name():
 def write_txt(filename: str, data: list):
     write_csv(filename, data)
 
+def headers_result():
+    return [header_color("N")] + [header_color(x) for x in fields()]
+
 def print_result(phone_book):
     print(tabulate(list(map(lambda x: [x[0] + 1] + [y for y in x[1].values()], list(enumerate(phone_book)))),
-                   headers=["N", "Фамилия", "Имя", "Телефон", "Описание"],
+                   headers=headers_result(),
                    tablefmt="rounded_grid"))
     
 def print_serch_result(search_result):
-    print_result(search_result) if search_result else print("Абонент не найден")
+    print_result(search_result) if search_result else print("\033[91mАбонент не найден\033[0m")
 
 def get_search_name():
     return input("Введите фамилию\n").strip()
@@ -62,9 +74,8 @@ def find_by_field(phone_book, field, value):
     return result
 
 def get_new_user():
-    fields = ["Фамилия", "Имя", "Телефон", "Описание"]
     user = dict()
-    for field in fields:
+    for field in fields():
         user[field] = input(field + "\n")
     return user
 
